@@ -8,7 +8,7 @@ const IndexScreen = () => {
   return (<View>
 
 
-    <Text> Index Sceen</Text>
+    <Text> Index Screen</Text>
     <FlatList 
       data={blogPosts}
       keyExtractor={(blogPost) => blogPost.title}
