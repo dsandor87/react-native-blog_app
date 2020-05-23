@@ -6,7 +6,7 @@ const BlogContext = React.createContext()
 
 export const BlogProvider = ({ children }
 ) => {
-  return <BlogContext.Provider>
+  return <BlogContext.Provider value={123345676554313245}>
     {children}
 
 
@@ -15,4 +15,4 @@ export const BlogProvider = ({ children }
 }
 
 
-
+export default BlogContext
