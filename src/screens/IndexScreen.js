@@ -11,7 +11,7 @@ import { Context } from '../context/BlogContext'
 import { FontAwesome } from '@expo/vector-icons'
 
 const IndexScreen = () => {
-  const { state, addBlogPost } = useContext(Context)
+  const { state, addBlogPost, deleteBlogPost } = useContext(Context)
   return (
     <View>
       <Button title='Add Post' onPress={addBlogPost} />
@@ -24,8 +24,7 @@ const IndexScreen = () => {
               <Text style={styles.title}>
                 {item.title}- {item.id}
               </Text>
-              <TouchableOpacity
-                onPress={() => console.log(`Delete the post ${item.id}`)}>
+              <TouchableOpacity onPress={() => deleteBlogPost(item.id)}>
                 <FontAwesome style={styles.icon} name='trash-o' />
               </TouchableOpacity>
             </View>
