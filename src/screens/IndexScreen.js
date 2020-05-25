@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 import { Context } from '../context/BlogContext'
 import { FontAwesome } from '@expo/vector-icons'
+import { Feather } from '@expo/vector-icons'
 
 const IndexScreen = ({ navigation }) => {
   // console.log(props)
@@ -39,6 +40,17 @@ const IndexScreen = ({ navigation }) => {
     // </TouchableOpacity>
   )
 }
+
+IndexScreen.navigationOptions = ({ navigation }) => {
+  return {
+    headerRight: (
+      <TouchableOpacity onPress={() => navigation.navigate('Create')}>
+        <Feather name='plus' size={40} color='black' />
+      </TouchableOpacity>
+    )
+  }
+}
+
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
