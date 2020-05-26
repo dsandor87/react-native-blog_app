@@ -1,5 +1,6 @@
 import React, { useReducer } from 'react'
 import createDataContext from './createDataContext'
+import { call } from 'react-native-reanimated'
 
 const blogReducer = (state, action) => {
   switch (action.type) {
@@ -26,7 +27,9 @@ const blogReducer = (state, action) => {
 const addBlogPost = (dispatch) => {
   return async (title, content, callback) => {
     dispatch({ type: 'add_blogpost', payload: { title, content } })
-    callback()
+    if (callback) {
+      callback()
+    }
   }
 }
 
@@ -36,8 +39,11 @@ const deleteBlogPost = (dispatch) => {
   }
 }
 const editBlogPost = (dispatch) => {
-  return (id, title, content) => {
+  return (id, title, content, callback) => {
     dispatch({ type: 'edit_blogpost', payload: { id, content, title } })
+    if (callback) {
+      callback()
+    }
   }
 }
 
