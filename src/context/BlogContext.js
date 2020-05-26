@@ -1,9 +1,11 @@
 import React, { useReducer } from 'react'
 import createDataContext from './createDataContext'
-import { call } from 'react-native-reanimated'
+import jsonServer from '../api/jsonServer'
 
 const blogReducer = (state, action) => {
   switch (action.type) {
+    case 'get_blogposts':
+      return action.payload
     case 'edit_blogpost':
       return state.map((blogPost) => {
         return blogPost.id === action.payload.id ? action.payload : blogPost
@@ -21,6 +23,14 @@ const blogReducer = (state, action) => {
       ]
     default:
       return state
+  }
+}
+
+const getBlogPosts = (dispatch) => {
+  return async () => {
+    const response = await jsonServer.get('/blogposts')
+
+    dispatch({ type: 'get_blogposts', payload: response.data })
   }
 }
 
@@ -49,6 +59,6 @@ const editBlogPost = (dispatch) => {
 
 export const { Context, Provider } = createDataContext(
   blogReducer,
-  { addBlogPost, deleteBlogPost, editBlogPost },
-  [{ title: 'Test', content: 'Test Contetn lorem ipsum', id: 1 }]
+  { addBlogPost, deleteBlogPost, editBlogPost, getBlogPosts },
+  []
 )
