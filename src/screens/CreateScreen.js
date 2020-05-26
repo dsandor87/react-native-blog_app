@@ -19,6 +19,8 @@ const CreateScreen = ({ navigation }) => {
       />
       <Text style={styles.label}>Content</Text>
       <TextInput
+        multiline={true}
+        numberOfLine={5}
         style={styles.input}
         value={content}
         onChangeText={(text) => setContent(text)}
